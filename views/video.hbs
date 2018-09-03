@@ -1,0 +1,26 @@
+{{#if name}}
+  <video id="videoPlayer" controls>
+  <source src="http://localhost:3000/{{name}}" type="video/mp4">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+    var data={"path":"{{name}}"};
+    $.ajax({
+      type:"POST",
+      url:"/demo",
+      data:JSON.stringify(data),
+     contentType: "application/JSON",
+      success:function(result){
+        $("#test").append(result);
+        alert(result);
+        console.log(result);
+      },
+      error: function(jqXHR, textStatus, errorThrown){
+      console.log(textStatus);
+        }
+    });
+    </script>
+    <div id="test">
+    </div>
+</video>
+{{/if}}
+<div id="demo"></div>

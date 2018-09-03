@@ -1,0 +1,35 @@
+
+<h1>{{title}}</h1>
+<p>Welcome to {{title}}</p>
+{{#if result}}
+  <!-- {{result.pos}} -->
+  <div>
+    <!-- <a href="{{result.pos}}">{{#each result.files}}{{this}}{{/each}}</a> -->
+    <script>
+      var x;
+      {{#if result.pos}}
+        x="{{result.pos}}";
+        {{/if}}
+      var file=[];
+      file = "{{result.files}}";
+      file=file.split(",")
+      for (let i = 0; i < file.length; i++) {
+        var a = document.createElement("a");
+        {{#if result.pos}}
+        a.setAttribute("href", x+'/'+file[i]);
+        {{else}}
+        a.setAttribute("href", file[i]);
+        {{/if}}
+        a.textContent = file[i];
+        document.body.appendChild(a);
+        var br= document.createElement("br");
+        document.body.appendChild(br);
+      }
+    </script>
+  </div>
+{{/if}}
+{{#if message}}
+<div>
+  {{message}}
+</div>
+{{/if}}
